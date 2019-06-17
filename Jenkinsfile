@@ -110,7 +110,9 @@ pipeline {
                                 "${server1c}:${agent1cPort}",
                                 serverSql,
                                 platform1c,
-                                testbase
+                                testbase,
+                                sqlUser,
+                                sqlPwd
                             )
                             // 5. Обновляем тестовую базу из хранилища 1С (если применимо)
                             updateDbTasks["updateTask_${testbase}"] = updateDbTask(
@@ -207,13 +209,17 @@ def dropDbTask(server1c, server1cPort, serverSql, infobase, admin1cUser, admin1c
     }
 }
 
-def createDbTask(server1c, serverSql, platform1c, infobase) {
+def createDbTask(server1c, serverSql, platform1c, infobase,
+                                sqlUser,
+                                sqlPwd) {
     return {
         stage("Создание базы ${infobase}") {
             timestamps {
                 def projectHelpers = new ProjectHelpers()
                 try {
-                    projectHelpers.createDb(platform1c, server1c, serversql, infobase, null, false)
+                    projectHelpers.createDb(platform1c, server1c, serversql, infobase, null, false,
+                                sqlUser,
+                                sqlPwd)
                 } catch (excp) {
                     echo "Error happened when creating base ${infobase}. Probably base already exists in the ibases.v8i list. Skip the error"
                 }
