@@ -10,9 +10,7 @@ package io.libs
 //  cfdt - файловый путь к dt или cf конфигурации для загрузки. Только для пакетного режима!
 //  isras - если true, то используется RAS для скрипта, в противном случае - пакетный режим
 //
-def createDb(platform, server1c, serversql, base, cfdt, isras,
-                                sqlUser,
-                                sqlPwd) {
+def createDb(platform, server1c, serversql, base, cfdt, isras,sqlUser,sqlPwd) {
     utils = new Utils()
 
     cfdtpath = ""
