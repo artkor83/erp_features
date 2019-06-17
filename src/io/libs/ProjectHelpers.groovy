@@ -35,7 +35,7 @@ def createDb(platform, server1c, serversql, base, cfdt, isras,sqlUser,sqlPwd) {
 
     sqlpasswLine = "";
     if (sqlPwd != null && !sqlPwd.isEmpty()) {
-        sqlpasswLine = "-sqlPwd ${sqlPwd}"
+        sqlpasswLine = "-sqlpassw ${sqlPwd}"
     }
 
     returnCode = utils.cmd("oscript one_script_tools/dbcreator.os ${platformLine} -server1c ${server1c} -serversql ${serversql} -base ${base} ${cfdtpath} ${israspath} ${sqluserLine} ${sqlpasswLine}")
